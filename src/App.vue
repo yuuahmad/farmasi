@@ -14,7 +14,9 @@
       <div>farmasi ui</div>
       <div class="flex">
         <router-link
-          to="/toko"
+          v-for="halaman in halamans"
+          :key="halaman"
+          :to="halaman.ke"
           class="
             capitalize
             hover:bg-blue-800
@@ -25,21 +27,7 @@
             rounded-full
           "
         >
-          toko
-        </router-link>
-        <router-link
-          to="/"
-          class="
-            capitalize
-            hover:bg-blue-800
-            bg-blue-700
-            px-4
-            py-1
-            mx-2
-            rounded-full
-          "
-        >
-          menu
+          {{ halaman.judul }}
         </router-link>
       </div>
     </div>
@@ -59,16 +47,74 @@
       from-pink-500
       to-pink-900
       p-12
-      text-white text-xl
+      text-white text-md
       capitalize
     "
   >
-    <div>ini adalah footer saya</div>
+    <div class="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div v-for="footer in footers" :key="footer">
+        <div>
+          {{ footer.judul }}
+          <div
+            class="text-sm ml-3"
+            v-for="keterangan in footer.keterangans"
+            :key="keterangan"
+          >
+            {{ keterangan }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      footers: [
+        {
+          judul: "informasi",
+          keterangans: ["satu", "dua", "dan tiga"],
+        },
+        {
+          judul: "sponsor",
+          keterangans: ["satu", "dua", "dan tiga"],
+        },
+        {
+          judul: "media partner",
+          keterangans: ["satu", "dua", "dan tiga"],
+        },
+        {
+          judul: "medsos dan informasi",
+          keterangans: ["satu", "dua", "dan tiga"],
+        },
+      ],
+      halamans: [
+        {
+          judul: "home",
+          ke: "/",
+        },
+        {
+          judul: "toko",
+          ke: "/toko",
+        },
+        {
+          judul: "admin",
+          ke: "/admin",
+        },
+        {
+          judul: "event",
+          ke: "/event",
+        },
+        {
+          judul: "lomba",
+          ke: "/lomba",
+        },
+      ],
+    };
+  },
+};
 </script>
 
 <style></style>
